@@ -1,0 +1,21 @@
+.container {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh; /* optional: make the container take up the full height of the viewport */
+  }
+.container h1{
+    color: cadetblue;
+}  
+.centered {
+    text-align: center;
+    margin: 10px;
+}
+.container .answer{
+    text-align: left;
+    margin-left: 20ch;
+    background-color: aqua;
+}
