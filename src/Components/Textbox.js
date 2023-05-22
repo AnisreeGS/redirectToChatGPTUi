@@ -3,8 +3,33 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { useState } from "react";
 
 export default function FormPropsTextFields() {
+  const [search,setSearch]= React.useState("");
+  const [apiData, setApiData] = useState(null);
+  const updatesearch = (e)=>{
+    setSearch(e.target.value)
+  }
+  console.log(search)
+  const handleSearch = () =>{
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(search),
+    };
+
+    fetch("http://localhost:3000/ask",options)
+      .then(response => response.json())
+      .then(data => {
+        setApiData(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   return (
     <>
     <div className="container">
@@ -23,12 +48,12 @@ export default function FormPropsTextFields() {
             className="centered"
             label="Ask me questions.."
             type="search"
-            onChange={(e) => dispatch(updatequestion(e.target.value))}
+            value={search}
+            onChange={(e)=>updatesearch(e)}
+            // onChange={(e) => dispatch(updatesearch(e.target.value))}
           />
 
-          <Button sx={{ mt: 2 }} variant="contained" 
-          // onClick={handleSearch}
-          >
+          <Button sx={{ mt: 2 }} variant="contained" onClick={handleSearch}>
             Search
           </Button>
         </div>
@@ -37,7 +62,9 @@ export default function FormPropsTextFields() {
     </div>
     <div className="answer">
       <h3>Answer: </h3>
+      {apiData && <p>{apiData}</p>}
     </div>
     </>
   );
 }
+
