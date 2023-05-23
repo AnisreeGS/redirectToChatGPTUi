@@ -49,7 +49,7 @@ export default function FormPropsTextFields() {
             label="Ask me questions.."
             type="search"
             value={search}
-            onChange={(e)=>updatesearch(e)}
+            onChange={(e)=>updatesearch(e.target.value)}
             // onChange={(e) => dispatch(updatesearch(e.target.value))}
           />
 
