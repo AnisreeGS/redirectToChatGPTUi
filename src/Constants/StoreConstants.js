@@ -6,3 +6,4 @@ export const initialState={
     questionsArray:[]
 }
 export const SETQUESTION = 'setquestion';
+
